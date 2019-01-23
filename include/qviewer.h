@@ -7,6 +7,10 @@
 
 #include    "settings.h"
 
+#include    "keyboard.h"
+
+#include    "animation-manager.h"
+
 //------------------------------------------------------------------------------
 //
 //------------------------------------------------------------------------------
@@ -27,6 +31,10 @@ private:
     osg::ref_ptr<osg::Group> root;
 
     osgViewer::Viewer   viewer;
+
+    KeyboardHandler     *keyboardHandler;
+
+    AnimationManager    *animManager;
 
     void init(int argc, char *argv[]);
 

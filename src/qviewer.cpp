@@ -1,6 +1,5 @@
 #include    "qviewer.h"
 #include    "qt-events.h"
-#include    "keyboard.h"
 #include    "basis.h"
 
 #include    <osg/Group>
@@ -45,7 +44,14 @@ void QViewer::init(int argc, char *argv[])
     initDisplay(&viewer, settings);
 
     viewer.addEventHandler(new QtEventsHandler());
-    viewer.addEventHandler(new KeyboardHandler(root.get()));
+
+    keyboardHandler = new KeyboardHandler(root.get());
+    viewer.addEventHandler(keyboardHandler);
+
+    animManager = new AnimationManager();
+
+    connect(keyboardHandler, &KeyboardHandler::loadAnimations,
+            animManager, &AnimationManager::loadAnimations);
 }
 
 //------------------------------------------------------------------------------
@@ -54,7 +60,7 @@ void QViewer::init(int argc, char *argv[])
 void QViewer::initDisplay(osgViewer::Viewer *viewer, settings_t &settings)
 {
     if (viewer == nullptr)
-        return;
+        return;    
 
     root->addChild(createBasis(1.0f));
 

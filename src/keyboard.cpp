@@ -4,14 +4,20 @@
 #include    <QTranslator>
 #include    <osgDB/ReadFile>
 
-KeyboardHandler::KeyboardHandler(osg::Group *root)
-    : root(root)
+#include    "basis.h"
+
+KeyboardHandler::KeyboardHandler(osg::Group *root, QObject *parent)
+    : QObject(parent)
+    , osgGA::GUIEventHandler()
+    , root(root)
     , openPath("")
     , settings(new QSettings("maisvendoo", "RRS", nullptr))
     , prevModel(nullptr)
 {
     openPath = settings->value("openPath", QDir::homePath()).toString();
     settings->setValue("openPath", openPath);
+
+    qRegisterMetaType<osg::Node *>();
 }
 
 //------------------------------------------------------------------------------
@@ -20,6 +26,8 @@ KeyboardHandler::KeyboardHandler(osg::Group *root)
 bool KeyboardHandler::handle(const osgGA::GUIEventAdapter &ea,
                              osgGA::GUIActionAdapter &aa)
 {
+    Q_UNUSED(aa)
+
     switch (ea.getEventType())
     {
     case osgGA::GUIEventAdapter::KEYDOWN:
@@ -61,20 +69,21 @@ void KeyboardHandler::eventKeyDown(int key)
 void KeyboardHandler::loadModel()
 {
     QString filePath = QFileDialog::getOpenFileName(nullptr,
-                                                    QObject::tr("Open model File"),
+                                                    tr("Open model File"),
                                                     openPath,
-                                                    QObject::tr("OpenSceneGraph (*.osg *.osgt *.osgb);; DGLEngine (*.dmd)")
+                                                    tr("OpenSceneGraph (*.osg *.osgt *.osgb);; DGLEngine (*.dmd)")
                                                     );
 
     osg::ref_ptr<osg::Node> model = osgDB::readNodeFile(filePath.toStdString());
 
-    if (prevModel != nullptr)
-        root->removeChild(prevModel);
+    root->removeChildren(0, root->getNumChildren());
 
+    root->addChild(createBasis(1.0f));
     root->addChild(model.get());
-    prevModel = model.get();
 
     openPath = QFileInfo(filePath).path();
     settings->setValue("openPath", openPath);
+
+    emit loadAnimations(model.get());
 }
 
