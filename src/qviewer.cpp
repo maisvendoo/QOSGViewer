@@ -1,6 +1,7 @@
 #include    "qviewer.h"
 #include    "qt-events.h"
 #include    "basis.h"
+#include    "grid.h"
 
 #include    <osg/Group>
 #include    <osg/GraphicsContext>
@@ -10,7 +11,7 @@
 //------------------------------------------------------------------------------
 QViewer::QViewer(int argc, char *argv[], QObject *parent)
     : QObject(parent)
-    , root(new osg::Group)
+    , root(new osg::Group)    
 {
     init(argc, argv);
 }
@@ -52,6 +53,11 @@ void QViewer::init(int argc, char *argv[])
 
     connect(keyboardHandler, &KeyboardHandler::loadAnimations,
             animManager, &AnimationManager::loadAnimations);
+
+    hud = new HeadUpDisplay(settings.width, settings.height);
+    hud->setFont("../fonts/arial.ttf");
+
+    root->addChild(hud->getCamera());
 }
 
 //------------------------------------------------------------------------------
@@ -62,7 +68,8 @@ void QViewer::initDisplay(osgViewer::Viewer *viewer, settings_t &settings)
     if (viewer == nullptr)
         return;    
 
-    root->addChild(createBasis(1.0f));
+    root->addChild(createBasis(20.0f));
+    root->addChild(createGrid(1.0f, 1.0f, 20.0f, 20.f));
 
     viewer->setSceneData(root.get());
 

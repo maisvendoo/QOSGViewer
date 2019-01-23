@@ -6,10 +6,9 @@
 #include    <QObject>
 
 #include    "settings.h"
-
 #include    "keyboard.h"
-
 #include    "animation-manager.h"
+#include    "hud.h"
 
 //------------------------------------------------------------------------------
 //
@@ -35,6 +34,8 @@ private:
     KeyboardHandler     *keyboardHandler;
 
     AnimationManager    *animManager;
+
+    HeadUpDisplay       *hud;
 
     void init(int argc, char *argv[]);
 

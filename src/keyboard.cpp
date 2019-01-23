@@ -6,6 +6,7 @@
 #include    <osgDB/ReadFile>
 
 #include    "basis.h"
+#include    "grid.h"
 
 KeyboardHandler::KeyboardHandler(osg::Group *root, QObject *parent)
     : QObject(parent)
@@ -87,10 +88,11 @@ void KeyboardHandler::loadModel()
         return;
     }
 
-    root->removeChildren(0, root->getNumChildren());
+    if (prevModel != nullptr)
+        root->removeChild(prevModel);
 
-    root->addChild(createBasis(1.0f));
     root->addChild(model.get());
+    prevModel = model.get();
 
     openPath = QFileInfo(filePath).path();
     settings->setValue("openPath", openPath);
