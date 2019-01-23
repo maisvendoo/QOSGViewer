@@ -34,7 +34,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Source: "{#BinDir}\{#ExeName1}"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#ResourceDir}\logo.ico"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
-Source: "{#BinDir}\*.*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#BinDir}\*.*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs 
 
 [Icons]
 Name: "{group}\{#Name}"; Filename: "{app}\{#ExeName1}"; IconFilename: "{app}\logo.ico"                            
