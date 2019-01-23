@@ -6,6 +6,7 @@
 int main(int argc, char *argv[])
 {
     QApplication    app(argc, argv);
+    QViewer         viewer(argc, argv);
 
-    return 0;
+    return viewer.exec();
 }

@@ -23,6 +23,7 @@ win32 {
         LIBS += -L$$OSG_LIB_DIRECTORY -losgDBd
         LIBS += -L$$OSG_LIB_DIRECTORY -lOpenThreadsd
         LIBS += -L$$OSG_LIB_DIRECTORY -losgAnimationd
+        LIBS += -L$$OSG_LIB_DIRECTORY -losgGAd
 
     } else {
 
@@ -31,7 +32,7 @@ win32 {
         LIBS += -L$$OSG_LIB_DIRECTORY -losgDB
         LIBS += -L$$OSG_LIB_DIRECTORY -lOpenThreads
         LIBS += -L$$OSG_LIB_DIRECTORY -losgAnimation
-
+        LIBS += -L$$OSG_LIB_DIRECTORY -losgGA
     }
 
     INCLUDEPATH += $$OSG_INCLUDE_DIRECTORY
@@ -48,6 +49,7 @@ unix {
         LIBS += -losgDBd
         LIBS += -lOpenThreadsd
         LIBS += -losgAnimationd
+        LIBS += -losgGAd
 
     } else {
 
@@ -56,7 +58,7 @@ unix {
         LIBS +=  -losgDB
         LIBS +=  -lOpenThreads
         LIBS +=  -losgAnimation
-
+        LIBS +=  -losgGA
     }
 }
 

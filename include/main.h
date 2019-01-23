@@ -3,4 +3,6 @@
 
 #include    <QApplication>
 
+#include    "qviewer.h"
+
 #endif
