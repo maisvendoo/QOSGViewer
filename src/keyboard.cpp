@@ -72,8 +72,10 @@ void KeyboardHandler::loadModel()
     QString filePath = QFileDialog::getOpenFileName(nullptr,
                                                     tr("Open model File"),
                                                     openPath,
-                                                    tr("OpenSceneGraph (*.osg *.osgt *.osgb);; DGLEngine (*.dmd)")
-                                                    );
+                                                    tr("OpenSceneGraph (*.osg *.osgt *.osgb);; DGLEngine (*.dmd)"));
+
+    if (filePath.isEmpty())
+        return;
 
     osg::ref_ptr<osg::Node> model = osgDB::readNodeFile(filePath.toStdString());
 

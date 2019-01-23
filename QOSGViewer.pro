@@ -6,7 +6,7 @@ QT += core
 QT += gui
 QT += widgets
 
-DESTDIR = ../../bin
+DESTDIR = ../bin
 
 win32 {
 

@@ -1,8 +1,9 @@
 #define Name        "QOSGViewer"
 #define Version       "0.1.0"
+#define arch          "x86_64"
 #define Publisher     "maisvendoo"
 #define ExeName1       "qosgviewer.exe"
-#define BinDir        "..\..\..\bin"
+#define BinDir        "..\..\bin"
 #define SrcDir        "..\"
 #define ResourceDir   "..\resources\"
 #define OsgBin        GetEnv('OSG_BIN_PATH')
@@ -19,7 +20,7 @@ DefaultDirName={pf}\{#Name}
 DefaultGroupName={#Name}
 
 OutputDir=..\..\bin-setup
-OutputBaseFilename={#Name}-v{#Version}-setup
+OutputBaseFilename={#Name}-{#arch}-v{#Version}-setup
 
 SetupIconFile={#ResourceDir}\logo.ico
 
