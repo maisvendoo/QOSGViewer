@@ -1,5 +1,7 @@
 #include    "qviewer.h"
 #include    "qt-events.h"
+#include    "keyboard.h"
+#include    "basis.h"
 
 #include    <osg/Group>
 #include    <osg/GraphicsContext>
@@ -43,6 +45,7 @@ void QViewer::init(int argc, char *argv[])
     initDisplay(&viewer, settings);
 
     viewer.addEventHandler(new QtEventsHandler());
+    viewer.addEventHandler(new KeyboardHandler(root.get()));
 }
 
 //------------------------------------------------------------------------------
@@ -52,6 +55,8 @@ void QViewer::initDisplay(osgViewer::Viewer *viewer, settings_t &settings)
 {
     if (viewer == nullptr)
         return;
+
+    root->addChild(createBasis(1.0f));
 
     viewer->setSceneData(root.get());
 
@@ -70,7 +75,7 @@ void QViewer::initDisplay(osgViewer::Viewer *viewer, settings_t &settings)
     osg::Camera *camera = viewer->getCamera();
     camera->setGraphicsContext(gc.get());
     camera->setViewport(0, 0, traits->width, traits->height);
-    camera->setClearColor(osg::Vec4(0.63f, 0.8f, 0.97f, 1.0f));
+    camera->setClearColor(osg::Vec4(0.7f, 0.7f, 0.7f, 1.0f));
     camera->setClearMask(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (traits->height == 0) traits->height = 1;
