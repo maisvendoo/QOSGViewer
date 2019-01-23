@@ -2,6 +2,7 @@
 
 #include    <QFileDialog>
 #include    <QTranslator>
+#include    <QMessageBox>
 #include    <osgDB/ReadFile>
 
 #include    "basis.h"
@@ -75,6 +76,14 @@ void KeyboardHandler::loadModel()
                                                     );
 
     osg::ref_ptr<osg::Node> model = osgDB::readNodeFile(filePath.toStdString());
+
+    if (!model.valid())
+    {
+        QMessageBox msgBox;
+        msgBox.setText("ERROR: model is't loaded!");
+        msgBox.exec();
+        return;
+    }
 
     root->removeChildren(0, root->getNumChildren());
 
