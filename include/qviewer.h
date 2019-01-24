@@ -8,7 +8,6 @@
 #include    "settings.h"
 #include    "keyboard.h"
 #include    "animation-manager.h"
-#include    "hud.h"
 
 //------------------------------------------------------------------------------
 //
@@ -33,9 +32,7 @@ private:
 
     KeyboardHandler     *keyboardHandler;
 
-    AnimationManager    *animManager;
-
-    HeadUpDisplay       *hud;
+    AnimationManager    *animManager;    
 
     void init(int argc, char *argv[]);
 

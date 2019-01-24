@@ -52,12 +52,7 @@ void QViewer::init(int argc, char *argv[])
     animManager = new AnimationManager();
 
     connect(keyboardHandler, &KeyboardHandler::loadAnimations,
-            animManager, &AnimationManager::loadAnimations);
-
-    hud = new HeadUpDisplay(settings.width, settings.height);
-    hud->setFont("../fonts/arial.ttf");
-
-    root->addChild(hud->getCamera());
+            animManager, &AnimationManager::loadAnimations);    
 }
 
 //------------------------------------------------------------------------------
