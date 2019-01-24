@@ -3,11 +3,10 @@
 #define arch          "x86_64"
 #define Publisher     "maisvendoo"
 #define ExeName1       "qosgviewer.exe"
-#define BinDir        "..\..\bin"
+#define BinDir        "..\..\bin-win"
 #define SrcDir        "..\"
-#define ResourceDir   "..\resources\"
-#define OsgBin        GetEnv('OSG_BIN_PATH')
-#define OsgPlugins    GetEnv('OSG_PLUGINS_PATH')
+#define ResourceDir   "..\resources"
+#define FontsDir      "..\..\fonts"
 
 [Setup]
 AppId={{1982FBEB-A487-44FC-B3C7-23E48DA9871F}}
@@ -32,11 +31,12 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 
-Source: "{#BinDir}\{#ExeName1}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#ResourceDir}\logo.ico"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#BinDir}\{#ExeName1}"; DestDir: "{app}\bin"; Flags: ignoreversion
+Source: "{#ResourceDir}\logo.ico"; DestDir: "{app}\bin"; Flags: ignoreversion recursesubdirs createallsubdirs
 
-Source: "{#BinDir}\*.*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs 
+Source: "{#BinDir}\*.*"; DestDir: "{app}\bin"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "{#FontsDir}\*.ttf"; DestDir: "{app}\fonts"; Flags: ignoreversion 
 
 [Icons]
-Name: "{group}\{#Name}"; Filename: "{app}\{#ExeName1}"; IconFilename: "{app}\logo.ico"                            
-Name: "{commondesktop}\{#Name}"; Filename: "{app}\{#ExeName1}"; IconFilename: "{app}\logo.ico"; Tasks: desktopicon
+Name: "{group}\{#Name}"; Filename: "{app}\bin\{#ExeName1}"; IconFilename: "{app}\bin\logo.ico"                            
+Name: "{commondesktop}\{#Name}"; Filename: "{app}\bin\{#ExeName1}"; IconFilename: "{app}\bin\logo.ico"; Tasks: desktopicon
