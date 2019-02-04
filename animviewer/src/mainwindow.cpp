@@ -3,6 +3,9 @@
 
 #include    <QGridLayout>
 
+#include    "basis.h"
+#include    "grid.h"
+
 //------------------------------------------------------------------------------
 //
 //------------------------------------------------------------------------------
@@ -23,6 +26,9 @@ MainWindow::MainWindow(QWidget *parent)
     timer.start(40);
 
     connect(ui->actionQuit, &QAction::triggered, this, &MainWindow::quit);
+
+    viewerWidget->getScene()->addChild(createGrid(1.0f, 1.0f, 20, 20));
+    viewerWidget->getScene()->addChild(createBasis(20.0f));
 }
 
 //------------------------------------------------------------------------------
