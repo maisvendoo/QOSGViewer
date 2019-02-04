@@ -2,9 +2,11 @@
 #include    "qt-events.h"
 #include    "basis.h"
 #include    "grid.h"
+#include    "qcontrolbar.h"
 
 #include    <osg/Group>
 #include    <osg/GraphicsContext>
+#include    <osgViewer/ViewerEventHandlers>
 
 //------------------------------------------------------------------------------
 //
@@ -52,7 +54,12 @@ void QViewer::init(int argc, char *argv[])
     animManager = new AnimationManager();
 
     connect(keyboardHandler, &KeyboardHandler::loadAnimations,
-            animManager, &AnimationManager::loadAnimations);    
+            animManager, &AnimationManager::loadAnimations);
+
+    controlBar = new QControlBar(QRect(1, 1, settings.width, 50));
+    root->addChild(controlBar->getPtr());
+
+    viewer.addEventHandler(new osgViewer::StatsHandler);
 }
 
 //------------------------------------------------------------------------------

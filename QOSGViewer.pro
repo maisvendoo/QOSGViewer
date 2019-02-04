@@ -5,6 +5,7 @@ TARGET = qosgviewer
 QT += core
 QT += gui
 QT += widgets
+QT += opengl
 
 DESTDIR = ../bin
 
@@ -25,6 +26,7 @@ win32 {
         LIBS += -L$$OSG_LIB_DIRECTORY -losgAnimationd
         LIBS += -L$$OSG_LIB_DIRECTORY -losgGAd
         LIBS += -L$$OSG_LIB_DIRECTORY -losgTextd
+        LIBS += -L$$OSG_LIB_DIRECTORY -losgQt5d
 
     } else {
 
@@ -35,6 +37,7 @@ win32 {
         LIBS += -L$$OSG_LIB_DIRECTORY -losgAnimation
         LIBS += -L$$OSG_LIB_DIRECTORY -losgGA
         LIBS += -L$$OSG_LIB_DIRECTORY -losgText
+        LIBS += -L$$OSG_LIB_DIRECTORY -losgQt5
     }
 
     INCLUDEPATH += $$OSG_INCLUDE_DIRECTORY
@@ -53,16 +56,18 @@ unix {
         LIBS += -losgAnimationd
         LIBS += -losgGAd
         LIBS += -losgTextd
+        LIBS += -losgQt5d
 
     } else {
 
-        LIBS +=  -losg
-        LIBS +=  -losgViewer
-        LIBS +=  -losgDB
-        LIBS +=  -lOpenThreads
-        LIBS +=  -losgAnimation
-        LIBS +=  -losgGA
+        LIBS += -losg
+        LIBS += -losgViewer
+        LIBS += -losgDB
+        LIBS += -lOpenThreads
+        LIBS += -losgAnimation
+        LIBS += -losgGA
         LIBS += -losgText
+        LIBS += -losgQt5
     }
 }
 

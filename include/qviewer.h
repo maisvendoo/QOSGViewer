@@ -9,6 +9,8 @@
 #include    "keyboard.h"
 #include    "animation-manager.h"
 
+class QControlBar;
+
 //------------------------------------------------------------------------------
 //
 //------------------------------------------------------------------------------
@@ -32,7 +34,9 @@ private:
 
     KeyboardHandler     *keyboardHandler;
 
-    AnimationManager    *animManager;    
+    AnimationManager    *animManager;
+
+    QControlBar         *controlBar;
 
     void init(int argc, char *argv[]);
 
