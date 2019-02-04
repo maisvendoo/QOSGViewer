@@ -45,7 +45,7 @@
       <item row="0" column="1">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QTableWidget" name="tableWidget">
+         <widget class="QTableWidget" name="twAnimations">
           <property name="minimumSize">
            <size>
             <width>450</width>
@@ -58,12 +58,30 @@
             <height>2000</height>
            </size>
           </property>
+          <column>
+           <property name="text">
+            <string>Имя</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Кадр</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Кадров</string>
+           </property>
+          </column>
          </widget>
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
            <widget class="QPushButton" name="pbDecFrame">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Frame -</string>
             </property>
@@ -71,6 +89,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="pbIncFrame">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Frame +</string>
             </property>
@@ -78,6 +99,9 @@
           </item>
           <item>
            <widget class="QPushButton" name="pbPlay">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Play</string>
             </property>
@@ -85,8 +109,18 @@
           </item>
           <item>
            <widget class="QPushButton" name="pbStop">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Stop</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pbStopAll">
+            <property name="text">
+             <string>Stop All</string>
             </property>
            </widget>
           </item>

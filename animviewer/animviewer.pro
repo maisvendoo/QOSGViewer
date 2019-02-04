@@ -30,6 +30,7 @@ win32 {
         LIBS += -L$$OSG_LIB_DIRECTORY -lOpenThreadsd
         LIBS += -L$$OSG_LIB_DIRECTORY -losgGAd
         LIBS += -L$$OSG_LIB_DIRECTORY -losgQt5d
+        LIBS += -L$$OSG_LIB_DIRECTORY -losgAnimationd
 
         LIBS += -L../../lib -lQOSGViewerWidget_d
 
@@ -41,6 +42,7 @@ win32 {
         LIBS += -L$$OSG_LIB_DIRECTORY -lOpenThreads
         LIBS += -L$$OSG_LIB_DIRECTORY -losgGA
         LIBS += -L$$OSG_LIB_DIRECTORY -losgQt5
+        LIBS += -L$$OSG_LIB_DIRECTORY -losgAnimation
 
         LIBS += -L../../lib -lQOSGViewerWidget
     }
@@ -60,6 +62,7 @@ unix {
         LIBS += -lOpenThreadsd
         LIBS += -losgGAd
         LIBS += -losgQt5d
+        LIBS += -losgAnimationd
 
         LIBS += -L../../lib -lQOSGViewerWidget_d
 
@@ -71,6 +74,7 @@ unix {
         LIBS +=  -lOpenThreads
         LIBS +=  -losgGA
         LIBS +=  -losgQt5
+        LIBS += -losgAnimation
 
         LIBS += -L../../lib -lQOSGViewerWidget
     }

@@ -4,6 +4,9 @@
 #include    <QMainWindow>
 #include    <QTimer>
 
+#include    <osg/Node>
+#include    <osgAnimation/BasicAnimationManager>
+
 #include    "qviewerwidget.h"
 
 //------------------------------------------------------------------------------
@@ -29,19 +32,40 @@ public:
 
 private:
 
-    Ui::MainWindow  *ui;
+    Ui::MainWindow          *ui;
 
-    QViewerWidget   *viewerWidget;
+    QViewerWidget           *viewerWidget;
 
-    QTimer          timer;
+    osg::ref_ptr<osg::Node> model;
+
+    QTimer                  timer;
+    QTimer                  controlTimer;
+
+    osgAnimation::AnimationList animations;
+
+    osg::ref_ptr<osgAnimation::BasicAnimationManager> manager;
 
     void paintEvent(QPaintEvent *);
+
+    void loadAnimations(osg::Node *model);
 
 private slots:
 
     void update();
 
     void quit();
+
+    void clean();
+
+    void open();
+
+    void play();
+
+    void stop();
+
+    void stopAll();
+
+    void controlsUpdate();
 };
 
 #endif // MAINWINDOW_H
