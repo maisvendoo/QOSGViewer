@@ -3,7 +3,11 @@
 #include    <osg/Geode>
 #include    <osg/Material>
 #include    <osg/Geometry>
+#include    <osg/ShapeDrawable>
 
+//------------------------------------------------------------------------------
+//
+//------------------------------------------------------------------------------
 osg::Geode *createAxis(const float &size, const osg::Vec4 &color, const osg::Vec3 &dir)
 {
     osg::ref_ptr<osg::Geode> axis = new osg::Geode;
@@ -14,20 +18,14 @@ osg::Geode *createAxis(const float &size, const osg::Vec4 &color, const osg::Vec
     material->setEmission(osg::Material::FRONT_AND_BACK, color);
     axis->getOrCreateStateSet()->setAttribute(material.get());
 
-    osg::ref_ptr<osg::Geometry> geom = new osg::Geometry;
+    float thinkness = 0.005f;
+    float length = size - thinkness;
+    osg::Vec3 box = osg::Vec3(1.0f, 1.0f, 1.0f) * thinkness + dir * length;
 
-    osg::ref_ptr<osg::Vec3Array> vertices = new osg::Vec3Array;
-    vertices->push_back(osg::Vec3(0.0f, 0.0f, 0.0f));
-    vertices->push_back(dir * size);
-    geom->setVertexArray(vertices.get());
-
-    osg::ref_ptr<osg::DrawArrays> da = new osg::DrawArrays(osg::PrimitiveSet::LINES,
-                                                           0,
-                                                           static_cast<int>(vertices->size()));
-
-    geom->addPrimitiveSet(da.get());
-
-    axis->addDrawable(geom.get());
+    osg::ref_ptr<osg::ShapeDrawable> shape = new osg::ShapeDrawable;
+    shape->setShape(new osg::Box(dir * size / 2.0f, box.x(), box.y(), box.z()));
+    shape->setColor(color);
+    axis->addDrawable(shape.get());
 
     return axis.release();
 }

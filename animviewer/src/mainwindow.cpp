@@ -29,17 +29,14 @@ MainWindow::MainWindow(QWidget *parent)
     layout->addWidget(viewerWidget);
     layout->setHorizontalSpacing(0);
     layout->setVerticalSpacing(0);
-    ui->frame->setLayout(layout);
-
-    connect(&timer, &QTimer::timeout, this, &MainWindow::update);
-    timer.start(40);
+    ui->frame->setLayout(layout);        
 
     connect(ui->actionQuit, &QAction::triggered, this, &MainWindow::quit);
     connect(ui->actionClean, &QAction::triggered, this, &MainWindow::clean);
     connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::open);
 
     viewerWidget->getScene()->addChild(createGrid(1.0f, 1.0f, 20, 20));
-    viewerWidget->getScene()->addChild(createBasis(20.0f));
+    viewerWidget->getScene()->addChild(createBasis(20.0f));    
 
     ui->twAnimations->setColumnWidth(0, 249);
     ui->twAnimations->setColumnWidth(1, 99);
@@ -54,7 +51,10 @@ MainWindow::MainWindow(QWidget *parent)
     controlTimer.start(100);
 
     openPath = settings->value("openPath", QDir::homePath()).toString();
-    settings->setValue("openPath", openPath);
+    settings->setValue("openPath", openPath);    
+
+    connect(&timer, &QTimer::timeout, this, &MainWindow::update);
+    timer.start(40);
 }
 
 //------------------------------------------------------------------------------
