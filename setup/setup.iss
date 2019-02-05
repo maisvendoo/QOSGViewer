@@ -1,5 +1,5 @@
 #define Name        "QOSGViewer"
-#define Version       "0.1.0"
+#define Version       "0.2.0"
 #define arch          "x86_64"
 #define Publisher     "maisvendoo"
 #define ExeName1       "qosgviewer.exe"

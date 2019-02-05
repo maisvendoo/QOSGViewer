@@ -3,6 +3,8 @@
 
 #include    <QGridLayout>
 #include    <QFileDialog>
+#include    <QDir>
+#include    <QFileInfo>
 
 #include    <osgDB/ReadFile>
 
@@ -16,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , viewerWidget(Q_NULLPTR)
+    , settings(new QSettings("maisvendoo", "RRS", Q_NULLPTR))
+    , openPath("./")
     , model(nullptr)
 {
     ui->setupUi(this);
@@ -48,6 +52,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(&controlTimer, &QTimer::timeout, this, &MainWindow::controlsUpdate);
     controlTimer.start(100);
+
+    openPath = settings->value("openPath", QDir::homePath()).toString();
+    settings->setValue("openPath", openPath);
 }
 
 //------------------------------------------------------------------------------
@@ -142,11 +149,13 @@ void MainWindow::open()
 
     QString path = QFileDialog::getOpenFileName(Q_NULLPTR,
                                                 tr("Open model file"),
-                                                "./",
+                                                openPath,
                                                 tr("OpenSceneGraph (*.osg *.osgt *.osgb *.ivi)"));
-
     if (path.isEmpty())
         return;
+
+    openPath = QFileInfo(path).path();
+    settings->setValue("openPath", openPath);
 
     model = osgDB::readNodeFile(path.toStdString());
     viewerWidget->getScene()->addChild(model.get());

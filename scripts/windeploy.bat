@@ -1,10 +1,12 @@
 mkdir ..\..\bin-win
 copy ..\..\bin\qosgviewer.exe ..\..\bin-win\qosgviewer.exe
+copy ..\..\lib\QOSGViewerWidget.dll ..\..\bin-win\QOSGViewerWidget.dll
 cd ..\..\bin-win
 
 echo "Check Qt dependences..."
 
 windeployqt.exe qosgviewer.exe
+windeployqt.exe QOSGViewerWidget.dll
 
 echo "Copy OSG libraries..."
 
@@ -16,6 +18,7 @@ copy %OSG_BIN_PATH%\libosgViewer.dll .\
 copy %OSG_BIN_PATH%\libOpenThreads.dll .\
 copy %OSG_BIN_PATH%\libosgUtil.dll .\
 copy %OSG_BIN_PATH%\libosgText.dll .\
+copy %OSG_BIN_PATH%\libosgQt5.dll .\
 
 echo "Copy OSG plugins..."
 

@@ -3,6 +3,7 @@
 
 #include    <QMainWindow>
 #include    <QTimer>
+#include    <QSettings>
 
 #include    <osg/Node>
 #include    <osgAnimation/BasicAnimationManager>
@@ -36,10 +37,14 @@ private:
 
     QViewerWidget           *viewerWidget;
 
+    QSettings               *settings;
+
+    QString                 openPath;
+
     osg::ref_ptr<osg::Node> model;
 
     QTimer                  timer;
-    QTimer                  controlTimer;
+    QTimer                  controlTimer;    
 
     osgAnimation::AnimationList animations;
 
