@@ -87,3 +87,6 @@ HEADERS += $$files(./include/*.h)
 SOURCES += $$files(./src/*.cpp)
 FORMS += $$files(./forms/*.ui)
 
+TRANSLATIONS += ./translations/QOSGViewer_ru.ts
+
+RESOURCES += $$files(./resources/*.qrc)

@@ -55,6 +55,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(&timer, &QTimer::timeout, this, &MainWindow::update);
     timer.start(40);
+
+    QIcon icon(":/icons/img/logo.png");
+    setWindowIcon(icon);
 }
 
 //------------------------------------------------------------------------------
