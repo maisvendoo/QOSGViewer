@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionOpen, &QAction::triggered, this, &MainWindow::open);
 
     viewerWidget->getScene()->addChild(createGrid(1.0f, 1.0f, 20, 20));
-    viewerWidget->getScene()->addChild(createBasis(20.0f));    
+    viewerWidget->getScene()->addChild(createBasis(20.0f));
 
     ui->twAnimations->setColumnWidth(0, 249);
     ui->twAnimations->setColumnWidth(1, 99);

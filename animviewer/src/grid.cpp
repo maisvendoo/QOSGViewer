@@ -53,7 +53,10 @@ osg::Group *createGrid(float stepX, float stepY, int nx, int ny)
         osg::Vec3 p1(-nx * stepX, i * stepY, 0.0);
         osg::Vec3 p2( nx * stepX, i * stepY, 0.0);
 
-        grid->addChild(createLine(p1, p2, color));
+        if (i != 0)
+            grid->addChild(createLine(p1, p2, color));
+        else
+            grid->addChild(createLine(p1, osg::Vec3(), color));
     }
 
     for (int i = -nx; i <= nx; ++i)
@@ -61,7 +64,10 @@ osg::Group *createGrid(float stepX, float stepY, int nx, int ny)
         osg::Vec3 p1( i * stepX, -ny * stepY, 0.0);
         osg::Vec3 p2( i * stepX,  ny * stepY, 0.0);
 
-        grid->addChild(createLine(p1, p2, color));
+        if (i != 0)
+            grid->addChild(createLine(p1, p2, color));
+        else
+            grid->addChild(createLine(p1, osg::Vec3(), color));
     }
 
     return grid.release();
