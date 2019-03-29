@@ -7,6 +7,8 @@
 #include    <osgViewer/Viewer>
 #include    <osgQt/GraphicsWindowQt>
 
+#include    "settings.h"
+
 #if defined(QVIEWER_WIDGET_LIB)
     #define QVIEWER_EXPORT  Q_DECL_EXPORT
 #else
@@ -35,6 +37,8 @@ protected:
     osgViewer::Viewer   viewer;
 
 private:
+
+    settings_t  settings;
 
     osgQt::GraphicsWindowQt *createGraphicsWindow(const QRect &geometry);
 
